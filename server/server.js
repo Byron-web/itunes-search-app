@@ -3,6 +3,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const cors = require("cors");
 const helmet = require("helmet");
+const port = process.env.SERVER_PORT || 5000;
 
 // Create a new instance of the Express application
 const app = express();
@@ -59,6 +60,6 @@ app.get("/apple-search", async (req, res) => {
 });
 
 // Start the server and listen on port 5000
-app.listen(5001, () => {
-  console.log("Server started on port 5001");
+app.listen(process.env.port || port, () => {
+  console.log(`Server started on ${port}`);
 });
