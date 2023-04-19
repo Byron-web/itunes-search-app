@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd client && react-scripts start",
+    "start": "cd server && npm run dev",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
