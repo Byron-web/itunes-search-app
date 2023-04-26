@@ -2,6 +2,10 @@
   "dependencies": {
     "react-bootstrap": "^2.7.4"
   },
+  "engines": {
+    "node": "16.13.1",
+    "npm": "9.6.4"
+  },
   "name": "express-react-project",
   "version": "1.0.0",
   "devDependencies": {
@@ -11,8 +15,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && npm run dev",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "cd server && npm run start",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install --prefix client && npm run build --prefix client "
   },
   "author": "",
   "license": "ISC",

@@ -9,6 +9,13 @@ const path = require("path");
 // Create a new instance of the Express application
 const app = express();
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  });
+}
+
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
@@ -69,6 +76,6 @@ app.get("/apple-search", async (req, res) => {
 });
 
 // Start the server and listen on port 5000
-app.listen(process.env.port || port, () => {
+app.listen(port, () => {
   console.log(`Server started on ${port}`);
 });
