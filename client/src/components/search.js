@@ -21,7 +21,7 @@ const Search = () => {
     } else {
       url = `https://itunes.apple.com/search?term=${searchQuery}&entity=${searchType}`;
     }
-    fetch(url)
+    fetch(url, { mode: "cors" })
       .then((res) => res.json())
       .then((data) => {
         setSearchResults(data.results);

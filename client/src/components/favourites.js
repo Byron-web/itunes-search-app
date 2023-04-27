@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 
 // define Favourites component
 const Favourites = () => {
   // load favourites from sessionStorage or create an empty array
-  const favourites = JSON.parse(sessionStorage.getItem("favourites")) || [];
+  const [favourites, setFavourites] = useState(
+    JSON.parse(sessionStorage.getItem("favourites")) || []
+  );
 
   // function to handle removing a favourite
   const handleRemoveFavourite = (result) => {
@@ -12,9 +14,10 @@ const Favourites = () => {
     const newFavourites = favourites.filter(
       (favourite) => favourite.trackId !== result.trackId
     );
+    setFavourites(newFavourites);
     // save updated favourites to sessionStorage
     sessionStorage.setItem("favourites", JSON.stringify(newFavourites));
-    window.location.reload(); // refresh page after removing favourite
+    console.log(sessionStorage);
   };
 
   // render the favourites list
@@ -25,7 +28,6 @@ const Favourites = () => {
         <p>You have no favourites</p>
       ) : (
         <div className="row">
-          {/* map over each favourite and render a Card component */}
           {favourites.map((favourite) => (
             <div className="col-sm-3 mb-3" key={favourite.trackId}>
               <Card>
