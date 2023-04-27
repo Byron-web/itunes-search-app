@@ -3,25 +3,18 @@ const express = require("express");
 const fetch = require("node-fetch");
 const cors = require("cors");
 const helmet = require("helmet");
-const port = process.env.SERVER_PORT || 5000;
+const port = process.env.PORT || 5000;
 const path = require("path");
 
 // Create a new instance of the Express application
 const app = express();
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
-  });
-}
-
 // Priority serve any static files.
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 // All remaining requests return the React app, so it can handle routing.
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "../client/build"));
+  response.sendFile(path.resolve(__dirname, "./client/build"));
 });
 
 // Enable CORS for all routes
